@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Asset Extractor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Gradient accent line -->
+  <div class="accent-line"></div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <div class="header-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="url(#iconGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <defs>
+            <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4F8EF7"/>
+              <stop offset="100%" stop-color="#00D2FF"/>
+            </linearGradient>
+          </defs>
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>Website Asset Extractor</h1>
+        <p class="subtitle">Extract &amp; download assets from any webpage</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Scan Button -->
+  <div class="scan-section" id="scanSection">
+    <button id="scanBtn" class="scan-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span>Scan Website</span>
+    </button>
+  </div>
+
+  <!-- Loading State -->
+  <div id="loadingState" class="loading-state hidden">
+    <div class="spinner"></div>
+    <p>Scanning webpage assets…</p>
+  </div>
+
+  <!-- Error State -->
+  <div id="errorState" class="error-state hidden">
+    <div class="error-icon">⚠️</div>
+    <p id="errorMessage">Unable to scan this page.</p>
+    <button id="retryBtn" class="retry-btn">Try Again</button>
+  </div>
+
+  <!-- Results (hidden until scan) -->
+  <div id="resultsContainer" class="results-container hidden">
+
+    <!-- Page Info -->
+    <div id="pageInfo" class="page-info"></div>
+
+    <!-- Stats Bar -->
+    <div id="statsBar" class="stats-bar"></div>
+
+    <!-- Tab Bar -->
+    <nav id="tabBar" class="tab-bar"></nav>
+
+    <!-- Search & Sort -->
+    <div class="controls-bar">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search assets…" autocomplete="off">
+      </div>
+      <select id="sortSelect" class="sort-select">
+        <option value="name">Name</option>
+        <option value="type">Type</option>
+        <option value="size">Size</option>
+      </select>
+    </div>
+
+    <!-- Assets List -->
+    <div id="assetsList" class="assets-list"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state hidden">
+      <div class="empty-icon">📭</div>
+      <p>No assets found for this filter.</p>
+    </div>
+
+    <!-- Bulk Action Bar -->
+    <div id="bulkBar" class="bulk-bar">
+      <button id="copyAllBtn" class="bulk-btn" title="Copy all visible URLs">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        Copy All URLs
+      </button>
+      <button id="exportTxtBtn" class="bulk-btn" title="Export visible URLs as TXT file">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+        Export TXT
+      </button>
+      <span id="assetCount" class="asset-count"></span>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
